@@ -1,11 +1,12 @@
 package com.bookr.backend.repository;
 
 import com.bookr.backend.models.Review;
-import org.springframework.data.repository.PagingAndSortingRepository;
+import org.springframework.data.repository.CrudRepository;
+
 
 import java.util.List;
 
-public interface ReviewRepository extends PagingAndSortingRepository<Review, Long>
+public interface ReviewRepository extends CrudRepository<Review, Long>
 {
 
 }
