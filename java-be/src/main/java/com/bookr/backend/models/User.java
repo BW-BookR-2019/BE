@@ -33,6 +33,16 @@ public class User extends Auditable
     private List<UserRoles> userroles = new ArrayList<>();
 
     @OneToMany(mappedBy = "user",
+               cascade = CascadeType.ALL)
+    @JsonIgnoreProperties("user")
+    private List<Review> reviews = new ArrayList<>();
+
+    @OneToMany(mappedBy = "user",
+               cascade = CascadeType.ALL)
+    @JsonIgnoreProperties("user")
+    private List<Book> books = new ArrayList<>();
+
+    @OneToMany(mappedBy = "user",
                cascade = CascadeType.ALL,
                orphanRemoval = true)
     @JsonIgnoreProperties("user")
@@ -42,15 +52,48 @@ public class User extends Auditable
     {
     }
 
-    public User(String username, String password, List<UserRoles> userRoles)
+    public User(String username, String password, List<UserRoles> userroles, List<Review> reviews, List<Book> books, List<Useremail> useremails)
     {
-        setUsername(username);
-        setPassword(password);
-        for (UserRoles ur : userRoles)
-        {
-            ur.setUser(this);
-        }
-        this.userroles = userRoles;
+        this.username = username;
+        this.password = password;
+        this.userroles = userroles;
+        this.reviews = reviews;
+        this.books = books;
+        this.useremails = useremails;
+    }
+
+    //    public User(String username, String password, List<UserRoles> userRoles)
+//    {
+//        setUsername(username);
+//        setPassword(password);
+//        for (UserRoles ur : userRoles)
+//        {
+//            ur.setUser(this);
+//        }
+//        this.userroles = userRoles;
+//    }
+
+    //User Roles won't be used so I made a new constructor
+
+
+    public List<Review> getReviews()
+    {
+        return reviews;
+    }
+
+    public void setReviews(List<Review> reviews)
+    {
+        this.reviews = reviews;
+    }
+
+    public List<Book> getBooks()
+    {
+        return books;
+    }
+
+    public void setBooks(List<Book> books)
+    {
+        this.books = books;
     }
 
     public long getUserid()
