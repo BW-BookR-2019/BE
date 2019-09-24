@@ -132,17 +132,26 @@
             <version>3.3.0</version>
             <scope>test</scope>
         </dependency>
+
+        <!-- Google BOOKS API -->
+        <dependency>
+            <groupId>com.google.apis</groupId>
+            <artifactId>google-api-services-books</artifactId>
+            <version>v1-rev106-1.25.0</version>
+        </dependency>
     </dependencies>
 
     <build>
 <!--        <finalName>${project.artifactId}</finalName>-->
-        <finalName>jrmmba-oauthmin</finalName>
+        <finalName>bookr-app2019</finalName>
 
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
+
+
 
             <!-- Heroku Maven Plugin Configuration -->
             <!-- https://cwiki.apache.org/confluence/display/MAVEN/Maven+Properties+Guide -->
@@ -151,7 +160,7 @@
                 <artifactId>heroku-maven-plugin</artifactId>
                 <version>2.0.10</version>
                 <configuration>
-                    <appName>${project.build.finalName}</appName>
+                    <appName>bookr-app2019</appName>
                     <includeTarget>false</includeTarget>
                     <includes>
                         <!--   For windows      <include>${project.build.directory}\${project.build.finalName}.jar</include>-->

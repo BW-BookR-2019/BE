@@ -52,14 +52,18 @@ public class User extends Auditable
     {
     }
 
-    public User(String username, String password, List<UserRoles> userroles, List<Review> reviews, List<Book> books, List<Useremail> useremails)
+    public User(String username, String password, List<UserRoles> userRoles)
     {
         this.username = username;
-        this.password = password;
-        this.userroles = userroles;
-        this.reviews = reviews;
-        this.books = books;
-        this.useremails = useremails;
+        setPassword(password);
+        for (UserRoles ur : userRoles)
+        {
+            ur.setUser(this);
+        }
+        this.userroles = userRoles;
+//        this.reviews = reviews;
+//        this.books = books;
+//        this.useremails = useremails;
     }
 
     //    public User(String username, String password, List<UserRoles> userRoles)
