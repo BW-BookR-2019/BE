@@ -1,8 +1,8 @@
 //package com.bookr.backend.controllers;
 //
-//import com.bookr.backend.models.review;
-//import com.bookr.backend.models.errordetail;
-//import com.bookr.backend.services.reviewservice;
+//import com.bookr.backend.models.Review;
+//import com.bookr.backend.models.ErrorDetail;
+//import com.bookr.backend.services.ReviewService;
 //
 //import io.swagger.annotations.*;
 //import org.slf4j.Logger;

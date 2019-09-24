@@ -1,9 +1,6 @@
 package com.bookr.backend;
 
-import com.bookr.backend.models.Role;
-import com.bookr.backend.models.User;
-import com.bookr.backend.models.UserRoles;
-import com.bookr.backend.models.Useremail;
+import com.bookr.backend.models.*;
 import com.bookr.backend.services.RoleService;
 import com.bookr.backend.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +9,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @Transactional
 @Component
@@ -61,12 +59,21 @@ public class SeedData implements CommandLineRunner
           .add(new Useremail(u2, "bunny@email.local"));
         userService.save(u2);
 
+//(String username, String password, List<UserRoles> userroles, List<Review> reviews, List<Book> books, List<Useremail> useremails)
+
         // user
         ArrayList<UserRoles> users = new ArrayList<>();
+        List<Review> reviews = new ArrayList<>();
+        List<Book> books = new ArrayList<>();
         users.add(new UserRoles(new User(), r2));
-        User u3 = new User("barnbarn", "ILuvM4th!", users);
+        User u3 = new User("Admin", "1234abcd", users);
         u3.getUseremails()
-          .add(new Useremail(u3, "barnbarn@email.local"));
+          .add(new Useremail(u3, "admin@admin.com"));
+//        Review rv1 = new Review("I hate Twilight", u3, 1);
+//        u3.getReviews()
+//                .add(rv1);
+//        u3.getBooks()
+//                .add(new Book("Twilight","Stephanie Meyers","Puffin House", (List<Review>) rv1));
         userService.save(u3);
 
         users = new ArrayList<>();
