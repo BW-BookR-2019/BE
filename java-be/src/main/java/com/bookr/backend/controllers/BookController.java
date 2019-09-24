@@ -1,8 +1,8 @@
 package com.bookr.backend.controllers;
 
-import com.bookr.backend.models.book;
-import com.bookr.backend.services.bookservice;
-import com.bookr.backend.models.errordetail;
+import com.bookr.backend.models.Book;
+import com.bookr.backend.services.BookService;
+import com.bookr.backend.models.ErrorDetail;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,10 +17,9 @@ import io.swagger.annotations.*;
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
-@Controller
+@RestController
 @RequestMapping("/books")
-public class BookController
-{
+public class BookController {
     private static final Logger logger = LoggerFactory.getLogger(BookController.class);
 
     @Autowired
@@ -43,7 +42,7 @@ public class BookController
                     paramType = "query",
                     value = "Sorting criteria in the format: property(,asc|desc). "
                             + "Default sort order is ascending. " + "Multiple sort criteria are supported.")})
-    @GetMapping(value ="/books", produces = {"application/json"})
+    @GetMapping(value = "/books", produces = {"application/json"})
     public ResponseEntity<?> findAllBooks(HttpServletRequest request,
                                           @PageableDefault(page = 0,
                                                   size = 3)
@@ -52,9 +51,9 @@ public class BookController
                 request.getRequestURI() + " accessed at warn level");
         List<Book> myBooks = bookService.findAll(pageable);
         return new ResponseEntity<>(myBooks, HttpStatus.OK);
-}
+    }
 
-    @ApiOperation(value="Deletes a Book Based on Id",
+    @ApiOperation(value = "Deletes a Book Based on Id",
             response = void.class)
     @ApiResponses(value = {
             @ApiResponse(code = 200,
@@ -67,9 +66,9 @@ public class BookController
                     required = true,
                     example = "1")
             @PathVariable long bookid,
-            HttpServletRequest request)
-    {
+            HttpServletRequest request) {
         logger.info(request.getMethod() + " " + request.getRequestURI() + " accessed");
         bookService.delete(bookid);
         return new ResponseEntity<>(HttpStatus.OK);
     }
+}

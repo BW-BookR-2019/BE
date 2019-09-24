@@ -132,6 +132,13 @@
             <version>3.3.0</version>
             <scope>test</scope>
         </dependency>
+
+        <!-- Google BOOKS API -->
+        <dependency>
+            <groupId>com.google.apis</groupId>
+            <artifactId>google-api-services-books</artifactId>
+            <version>v1-rev106-1.25.0</version>
+        </dependency>
     </dependencies>
 
     <build>
@@ -143,6 +150,8 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
+
+
 
             <!-- Heroku Maven Plugin Configuration -->
             <!-- https://cwiki.apache.org/confluence/display/MAVEN/Maven+Properties+Guide -->
