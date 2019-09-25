@@ -65,4 +65,18 @@ public class ReviewController
         reviewService.delete(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
+
+    @ApiOperation(value = "Udates a review info", consumes = "Review", response = void.class)
+    @ApiResponses(value = {
+            @ApiResponse(code = 201, message = "Review Successfully Updated", response = void.class),
+            @ApiResponse(code = 404, message = "Review Not Found", response = ErrorDetail.class),
+            @ApiResponse(code = 500, message = "Error Updating Book", response = ErrorDetail.class),
+    })
+    @PutMapping(value = "/Review/{id}", produces = {"application/json"}, consumes = {"application/json"})
+    public ResponseEntity<?> updateReview(@ApiParam(name = "Review Id", required = true) @PathVariable long id, @RequestBody @Valid Review review)
+    {
+        reviewService.update(review, id);
+        return new ResponseEntity<>(HttpStatus.CREATED);
+    }
 }
+
