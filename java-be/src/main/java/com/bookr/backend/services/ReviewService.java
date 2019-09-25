@@ -12,4 +12,6 @@ public interface ReviewService
     Review update(Review review, long id); //S may be needed.
 
     Review save(Review review);
+
+    Review findReviewById(long id);
 }
