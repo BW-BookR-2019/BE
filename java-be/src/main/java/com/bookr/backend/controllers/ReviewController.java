@@ -33,25 +33,6 @@ public class ReviewController
     @Autowired
     ReviewService reviewService;
 
-    @ApiOperation(value = "Returns a list of all reviews", responseContainer = "List")
-
-
-    @PostMapping(value = "/review")
-    public ResponseEntity<?> addNewReview(@Valid
-                                         @RequestBody
-                                                 Review newReview) throws URISyntaxException
-    {
-        newReview = reviewService.save(newReview);
-
-        // set the location header for the newly created resource
-        HttpHeaders responseHeaders = new HttpHeaders();
-        URI newReviewURI = ServletUriComponentsBuilder.fromCurrentRequest().path("/{reviewid}").buildAndExpand(newReview.getReviewid()).toUri();
-        responseHeaders.setLocation(newReviewURI);
-
-        return new ResponseEntity<>(null, responseHeaders, HttpStatus.CREATED);
-    }
-
-
 
     @ApiOperation(value = "Create a review", responseContainer = "List")
 
