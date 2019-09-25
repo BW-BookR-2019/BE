@@ -17,6 +17,12 @@ public class Book extends Auditable
     private String author;
     private String publisher;
 
+    @ManyToOne
+    @JoinColumn(name = "userid",
+            nullable = false)
+    @JsonIgnoreProperties("books")
+    private User user;
+
     @ManyToMany
     @JoinTable(name = "bookreviews",
                joinColumns = {@JoinColumn(name = "bookid")},
