@@ -6,6 +6,7 @@ import com.bookr.backend.repository.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -57,6 +58,13 @@ public class BookServiceImpl implements BookService
             throw new ResourceNotFoundException(Long.toString(id));
     }
 
+
+    @Override
+    public Book save(Book book)
+    {
+        Book stuff =new Book();
+        return bookrepo.save(stuff);
+    }
 
 
 }

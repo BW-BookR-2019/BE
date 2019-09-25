@@ -29,7 +29,7 @@ public class UserController
     @Autowired
     private UserService userService;
 
-    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
+    @PreAuthorize("hasAuthority('ROLE_USER')")
     @GetMapping(value = "/users",
                 produces = {"application/json"})
     public ResponseEntity<?> listAllUsers(HttpServletRequest request)
@@ -42,7 +42,7 @@ public class UserController
     }
 
 
-    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
+    @PreAuthorize("hasAuthority('ROLE_USER')")
     @GetMapping(value = "/user/{userId}",
                 produces = {"application/json"})
     public ResponseEntity<?> getUserById(HttpServletRequest request,
@@ -57,7 +57,7 @@ public class UserController
     }
 
 
-    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
+    @PreAuthorize("hasAuthority('ROLE_USER')")
     @GetMapping(value = "/user/name/{userName}",
                 produces = {"application/json"})
     public ResponseEntity<?> getUserByName(HttpServletRequest request,
@@ -84,7 +84,7 @@ public class UserController
     }
 
 
-    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
+    @PreAuthorize("hasAuthority('ROLE_USER')")
     @PostMapping(value = "/user",
                  consumes = {"application/json"},
                  produces = {"application/json"})
@@ -124,7 +124,7 @@ public class UserController
     }
 
 
-    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
+    @PreAuthorize("hasAuthority('ROLE_USER')")
     @DeleteMapping("/user/{id}")
     public ResponseEntity<?> deleteUserById(HttpServletRequest request,
                                             @PathVariable
@@ -137,7 +137,7 @@ public class UserController
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
+    @PreAuthorize("hasAuthority('ROLE_USER')")
     @DeleteMapping("/user/{userid}/role/{roleid}")
     public ResponseEntity<?> deleteUserRoleByIds(HttpServletRequest request,
                                                  @PathVariable
@@ -153,7 +153,7 @@ public class UserController
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
+    @PreAuthorize("hasAuthority('ROLE_USER')")
     @PostMapping("/user/{userid}/role/{roleid}")
     public ResponseEntity<?> postUserRoleByIds(HttpServletRequest request,
                                                @PathVariable

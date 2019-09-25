@@ -34,12 +34,12 @@ public class Book extends Auditable
     {
     }
 
-    public Book(String booktitle, String author, String publisher, List<Review> reviews)
+    public Book(String booktitle, String author, String publisher)
     {
         this.booktitle = booktitle;
         this.author = author;
         this.publisher = publisher;
-        this.reviews = reviews;
+
     }
 
     public long getBookid()
@@ -80,16 +80,6 @@ public class Book extends Auditable
     public void setPublisher(String publisher)
     {
         this.publisher = publisher;
-    }
-
-    public List<Review> getReviews()
-    {
-        return reviews;
-    }
-
-    public void setReviews(List<Review> reviews)
-    {
-        this.reviews = reviews;
     }
 
 }

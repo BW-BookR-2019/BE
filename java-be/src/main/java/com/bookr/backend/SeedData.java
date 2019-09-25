@@ -1,6 +1,7 @@
 package com.bookr.backend;
 
 import com.bookr.backend.models.*;
+import com.bookr.backend.services.BookService;
 import com.bookr.backend.services.RoleService;
 import com.bookr.backend.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +21,9 @@ public class SeedData implements CommandLineRunner
 
     @Autowired
     UserService userService;
+
+    @Autowired
+    BookService bookService;
 
 
     @Override
@@ -86,6 +90,11 @@ public class SeedData implements CommandLineRunner
         User u5 = new User("Jane", "password", users);
         userService.save(u5);
 
+//        ArrayList<Review> b1Review = new ArrayList<>();
+//        Book b1 = new Book("Twilight","Stephanie Meyers","Puffin House");
+//        Review rv1 = new Review("I hate Twilight", u3, 1);
+//        b1Review.add(rv1);
+//        bookService.save(b1);
 
     }
 }
