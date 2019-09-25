@@ -33,25 +33,6 @@ public class ReviewController
     @Autowired
     ReviewService reviewService;
 
-    @ApiOperation(value = "Returns a list of all reviews", responseContainer = "List")
-
-
-    @PostMapping(value = "/review")
-    public ResponseEntity<?> addNewReview(@Valid
-                                         @RequestBody
-                                                 Review newReview) throws URISyntaxException
-    {
-        newReview = reviewService.save(newReview);
-
-        // set the location header for the newly created resource
-        HttpHeaders responseHeaders = new HttpHeaders();
-        URI newReviewURI = ServletUriComponentsBuilder.fromCurrentRequest().path("/{reviewid}").buildAndExpand(newReview.getReviewid()).toUri();
-        responseHeaders.setLocation(newReviewURI);
-
-        return new ResponseEntity<>(null, responseHeaders, HttpStatus.CREATED);
-    }
-
-
 
     @ApiOperation(value = "Create a review", responseContainer = "List")
 
@@ -84,4 +65,18 @@ public class ReviewController
         reviewService.delete(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
+
+    @ApiOperation(value = "Udates a review info", consumes = "Review", response = void.class)
+    @ApiResponses(value = {
+            @ApiResponse(code = 201, message = "Review Successfully Updated", response = void.class),
+            @ApiResponse(code = 404, message = "Review Not Found", response = ErrorDetail.class),
+            @ApiResponse(code = 500, message = "Error Updating Book", response = ErrorDetail.class),
+    })
+    @PutMapping(value = "/Review/{id}", produces = {"application/json"}, consumes = {"application/json"})
+    public ResponseEntity<?> updateReview(@ApiParam(name = "Review Id", required = true) @PathVariable long id, @RequestBody @Valid Review review)
+    {
+        reviewService.update(review, id);
+        return new ResponseEntity<>(HttpStatus.CREATED);
+    }
 }
+

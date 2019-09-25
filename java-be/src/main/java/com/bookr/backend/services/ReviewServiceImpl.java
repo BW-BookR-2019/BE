@@ -38,10 +38,10 @@ public class ReviewServiceImpl implements ReviewService
             throw new ResourceNotFoundException(Long.toString(id));
     }
 
-    @Override
-    public Review update(Review review, long id) {
-        return null;
-    }
+//    @Override
+//    public Review update(Review review, long id) {
+//        return null;
+//    }
 
     @Transactional
     @Override
@@ -60,23 +60,23 @@ public class ReviewServiceImpl implements ReviewService
 //        return list;
 //    }
 
-//    @Override
-//    public Review update(Review review, long id)
-//    {
-//        Review newReview = reviewrepo.findById(id)
-//                .orElseThrow(() -> new ResourceNotFoundException(Long.toString(id)));
-//
-//        if (review.getReview() != null)
-//        {
-//            newReview.setReview(review.getReview());
-//        }
-//
-//        if (Review.getUser() != null)
-//        {
-//            newReview.setUser(review.getUser());
-//        }
-//
-//        return reviewrepo.save(newReview);
-//    }
+    @Override
+    public Review update(Review review, long id)
+    {
+        Review newReview = reviewrepo.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException(Long.toString(id)));
+
+        if (review.getReview() != null)
+        {
+            newReview.setReview(review.getReview());
+        }
+
+        if (review.getUser() != null)
+        {
+            newReview.setUser(review.getUser());
+        }
+
+        return reviewrepo.save(newReview);
+    }
 }
 

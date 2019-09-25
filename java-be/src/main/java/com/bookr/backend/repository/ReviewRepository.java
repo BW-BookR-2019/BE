@@ -28,6 +28,6 @@ public interface ReviewRepository extends CrudRepository<Review, Long>
             nativeQuery = true)
     void insertBookReviews(long bookid, long reviewid);
 
-    Review findByNameIgnoreCase(String name);
+    Review findReviewByUser(String User);
 }
 
