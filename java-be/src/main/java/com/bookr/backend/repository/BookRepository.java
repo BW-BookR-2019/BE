@@ -7,5 +7,5 @@ import java.util.List;
 
 public interface BookRepository extends PagingAndSortingRepository<Book, Long>
 {
-    List<Book> findAll();
+//    List<Book> findAll();
 }
