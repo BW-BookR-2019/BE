@@ -47,18 +47,12 @@ public class ReviewServiceImpl implements ReviewService
     @Override
     public Review save(Review review)
     {
-        return reviewrepo.save(review);
+        Review stuff =new Review();
+        stuff.setReview(review.getReview());
+        stuff.setUser(review.getUser());
+        stuff.setRating(review.getRating());
+        return reviewrepo.save(stuff);
     }
-
-//    @Override
-//    public List<Review> findByUserName(String username)
-//    {
-//        List<Review> list = new ArrayList<>();
-//        reviewrepo.findAll().iterator().forEachRemaining(list::add);
-//
-//        list.removeIf(q -> !q.getUser().getUsername().equalsIgnoreCase(username));
-//        return list;
-//    }
 
     @Override
     public Review update(Review review, long id)

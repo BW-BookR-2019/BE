@@ -2,6 +2,7 @@ package com.bookr.backend.services;
 
 import com.bookr.backend.exceptions.ResourceNotFoundException;
 import com.bookr.backend.models.Book;
+import com.bookr.backend.models.Review;
 import com.bookr.backend.repository.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
@@ -58,13 +59,42 @@ public class BookServiceImpl implements BookService
             throw new ResourceNotFoundException(Long.toString(id));
     }
 
-
     @Override
     public Book save(Book book)
     {
-        Book stuff =new Book();
-        return bookrepo.save(stuff);
+        Book newBook = new Book();
+
+        if (book.getBooktitle() != null)
+        {
+            newBook.setBooktitle(book.getBooktitle());
+        }
+        if (book.getPublisher() != null)
+        {
+            newBook.setPublisher(book.getPublisher());
+        }
+        if (book.getAuthor() != null)
+        {
+            newBook.setAuthor(book.getAuthor());
+        }
+
+//        newBook.setCopy(book.getCopy());
+
+        for (Review r : book.getReviews())
+        {
+            newBook.getReviews().add(r);
+        }
+
+        return bookrepo.save(newBook);
     }
-
-
 }
+//    @Override
+//    public Book save(Book book)
+//    {
+//        Book stuff =new Book();
+//        stuff.setBooktitle(book.getBooktitle());
+//        stuff.setAuthor(book.getAuthor());
+//        stuff.setPublisher(book.getPublisher());
+//        return bookrepo.save(stuff);
+//    }
+
+
