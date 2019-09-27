@@ -52,21 +52,17 @@ public class User extends Auditable
     {
     }
 
-    public User(String username, String password, List<UserRoles> userRoles)
+    public User(String username, String password, List<Review> reviews)
     {
         this.username = username;
         setPassword(password);
-        for (UserRoles ur : userRoles)
+        for (Review r : reviews)
         {
-            ur.setUser(this);
+            r.setUser(this);
         }
-        this.userroles = userRoles;
-//        this.reviews = reviews;
-//        this.books = books;
-//        this.useremails = useremails;
+        this.reviews = reviews;
     }
-
-    //    public User(String username, String password, List<UserRoles> userRoles)
+        //    public User(String username, String password, List<UserRoles> userRoles)
 //    {
 //        setUsername(username);
 //        setPassword(password);
@@ -136,15 +132,25 @@ public class User extends Auditable
         this.password = password;
     }
 
-    public List<UserRoles> getUserroles()
+    public List<Review> getReview()
     {
-        return userroles;
+        return reviews;
     }
 
-    public void setUserroles(List<UserRoles> userroles)
+    public void setReview(List<Review> review)
     {
-        this.userroles = userroles;
+        this.reviews = review;
     }
+
+//    public List<UserRoles> getUserroles()
+//    {
+//        return userroles;
+//    }
+//
+//    public void setUserroles(List<UserRoles> userroles)
+//    {
+//        this.userroles = userroles;
+//    }
 
     public List<Useremail> getUseremails()
     {
