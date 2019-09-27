@@ -10,11 +10,9 @@ import springfox.documentation.service.ApiInfo;
 import springfox.documentation.service.Contact;
 import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
-import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 // http://localhost:2019/swagger-ui.html
 @Configuration
-@EnableSwagger2
 public class Swagger2Config
 {
     @Bean
@@ -22,7 +20,7 @@ public class Swagger2Config
     {
         return new Docket(DocumentationType.SWAGGER_2).select()
                                                       //                .apis(RequestHandlerSelectors.any())
-                                                      .apis(RequestHandlerSelectors.basePackage("com.bookr.backend"))
+                                                      .apis(RequestHandlerSelectors.basePackage("com.lambdaschool.starthere"))
                                                       .paths(PathSelectors.any())
                                                       .build()
                                                       .useDefaultResponseMessages(false) // Allows only my exception responses

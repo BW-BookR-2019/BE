@@ -4,8 +4,6 @@ import com.bookr.backend.models.Role;
 
 import java.util.List;
 
-// Note role does not have an update. Changing the spelling of the role impacts resource access so is BIG DEAL!
-
 public interface RoleService
 {
     List<Role> findAll();

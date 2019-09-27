@@ -39,27 +39,14 @@ public class RolesController
 
     @GetMapping(value = "/role/{roleId}",
                 produces = {"application/json"})
-    public ResponseEntity<?> getRoleById(HttpServletRequest request,
-                                         @PathVariable
-                                                 Long roleId)
+    public ResponseEntity<?> getRole(HttpServletRequest request,
+                                     @PathVariable
+                                             Long roleId)
     {
         logger.trace(request.getMethod()
                             .toUpperCase() + " " + request.getRequestURI() + " accessed");
 
         Role r = roleService.findRoleById(roleId);
-        return new ResponseEntity<>(r, HttpStatus.OK);
-    }
-
-    @GetMapping(value = "/role/name/{roleName}",
-                produces = {"application/json"})
-    public ResponseEntity<?> getRoleByName(HttpServletRequest request,
-                                           @PathVariable
-                                                   String roleName)
-    {
-        logger.trace(request.getMethod()
-                            .toUpperCase() + " " + request.getRequestURI() + " accessed");
-
-        Role r = roleService.findByName(roleName);
         return new ResponseEntity<>(r, HttpStatus.OK);
     }
 

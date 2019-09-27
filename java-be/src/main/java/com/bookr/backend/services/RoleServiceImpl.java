@@ -2,10 +2,7 @@ package com.bookr.backend.services;
 
 import com.bookr.backend.exceptions.ResourceNotFoundException;
 import com.bookr.backend.models.Role;
-import com.bookr.backend.models.User;
-import com.bookr.backend.models.UserRoles;
 import com.bookr.backend.repository.RoleRepository;
-import com.bookr.backend.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -18,9 +15,6 @@ public class RoleServiceImpl implements RoleService
 {
     @Autowired
     RoleRepository rolerepos;
-
-    @Autowired
-    UserRepository userrepos;
 
     @Override
     public List<Role> findAll()
@@ -37,7 +31,7 @@ public class RoleServiceImpl implements RoleService
     public Role findRoleById(long id)
     {
         return rolerepos.findById(id)
-                        .orElseThrow(() -> new ResourceNotFoundException("Role id " + id + " not found!"));
+                        .orElseThrow(() -> new ResourceNotFoundException(Long.toString(id)));
     }
 
     @Override
@@ -54,12 +48,11 @@ public class RoleServiceImpl implements RoleService
         }
     }
 
-    @Transactional
     @Override
     public void delete(long id)
     {
         rolerepos.findById(id)
-                 .orElseThrow(() -> new ResourceNotFoundException("Role id " + id + " not found!"));
+                 .orElseThrow(() -> new ResourceNotFoundException(Long.toString(id)));
         rolerepos.deleteById(id);
     }
 
@@ -68,20 +61,6 @@ public class RoleServiceImpl implements RoleService
     @Override
     public Role save(Role role)
     {
-        Role newRole = new Role();
-        newRole.setName(role.getName());
-
-        ArrayList<UserRoles> newUsers = new ArrayList<>();
-        for (UserRoles ur : role.getUserroles())
-        {
-            long id = ur.getUser()
-                        .getUserid();
-            User user = userrepos.findById(id)
-                                 .orElseThrow(() -> new ResourceNotFoundException("User id " + id + " not found!"));
-            newUsers.add(new UserRoles(ur.getUser(), newRole));
-        }
-        newRole.setUserroles(newUsers);
-
         return rolerepos.save(role);
     }
 }

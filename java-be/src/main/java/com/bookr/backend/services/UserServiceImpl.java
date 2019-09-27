@@ -1,11 +1,9 @@
 package com.bookr.backend.services;
 
-import com.bookr.backend.exceptions.ResourceFoundException;
 import com.bookr.backend.exceptions.ResourceNotFoundException;
-import com.bookr.backend.models.Role;
 import com.bookr.backend.models.User;
 import com.bookr.backend.models.UserRoles;
-import com.bookr.backend.models.Useremail;
+import com.bookr.backend.models.Review;
 import com.bookr.backend.repository.RoleRepository;
 import com.bookr.backend.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,7 +30,6 @@ public class UserServiceImpl implements UserDetailsService, UserService
     private RoleRepository rolerepos;
 
     @Transactional
-    @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException
     {
         User user = userrepos.findByUsername(username);
@@ -46,10 +43,9 @@ public class UserServiceImpl implements UserDetailsService, UserService
     public User findUserById(long id) throws ResourceNotFoundException
     {
         return userrepos.findById(id)
-                        .orElseThrow(() -> new ResourceNotFoundException("User id " + id + " not found!"));
+                        .orElseThrow(() -> new ResourceNotFoundException(Long.toString(id)));
     }
 
-    @Override
     public List<User> findAll()
     {
         List<User> list = new ArrayList<>();
@@ -59,54 +55,38 @@ public class UserServiceImpl implements UserDetailsService, UserService
         return list;
     }
 
-    @Transactional
     @Override
     public void delete(long id)
     {
-        userrepos.findById(id)
-                 .orElseThrow(() -> new ResourceNotFoundException("User id " + id + " not found!"));
-        userrepos.deleteById(id);
-    }
-
-    @Override
-    public User findByName(String name)
-    {
-        User uu = userrepos.findByUsername(name);
-        if (uu == null)
+        if (userrepos.findById(id)
+                     .isPresent())
         {
-            throw new ResourceNotFoundException("User name " + name + " not found!");
+            userrepos.deleteById(id);
+        } else
+        {
+            throw new ResourceNotFoundException(Long.toString(id));
         }
-        return uu;
     }
 
     @Transactional
     @Override
     public User save(User user)
     {
-        if (userrepos.findByUsername(user.getUsername()) != null)
-        {
-            throw new ResourceFoundException(user.getUsername() + " is already taken!");
-        }
-
         User newUser = new User();
         newUser.setUsername(user.getUsername());
         newUser.setPasswordNoEncrypt(user.getPassword());
 
         ArrayList<UserRoles> newRoles = new ArrayList<>();
-        for (UserRoles ur : user.getUserroles())
+        for (UserRoles ur : user.getUserRoles())
         {
-            long id = ur.getRole()
-                        .getRoleid();
-            Role role = rolerepos.findById(id)
-                                 .orElseThrow(() -> new ResourceNotFoundException("Role id " + id + " not found!"));
             newRoles.add(new UserRoles(newUser, ur.getRole()));
         }
-        newUser.setUserroles(newRoles);
+        newUser.setUserRoles(newRoles);
 
-        for (Useremail ue : user.getUseremails())
+        for (Review r : user.getReviews())
         {
-            newUser.getUseremails()
-                   .add(new Useremail(newUser, ue.getUseremail()));
+            newUser.getReviews()
+                   .add(new Review(r.getReviewid(), newUser));
         }
 
         return userrepos.save(newUser);
@@ -115,82 +95,61 @@ public class UserServiceImpl implements UserDetailsService, UserService
 
     @Transactional
     @Override
-    public User update(User user, long id, boolean isAdmin)
+    public User update(User user, long id)
     {
         Authentication authentication = SecurityContextHolder.getContext()
                                                              .getAuthentication();
         User currentUser = userrepos.findByUsername(authentication.getName());
 
-        if (id == currentUser.getUserid() || isAdmin)
+        if (currentUser != null)
         {
-            if (user.getUsername() != null)
+            if (id == currentUser.getUserid())
             {
-                currentUser.setUsername(user.getUsername());
-            }
-
-            if (user.getPassword() != null)
-            {
-                currentUser.setPasswordNoEncrypt(user.getPassword());
-            }
-
-            if (user.getUserroles()
-                    .size() > 0)
-            {
-                throw new ResourceFoundException("User Roles are not updated through User");
-            }
-
-            if (user.getUseremails()
-                    .size() > 0)
-            {
-                for (Useremail ue : user.getUseremails())
+                if (user.getUsername() != null)
                 {
-                    currentUser.getUseremails()
-                               .add(new Useremail(currentUser, ue.getUseremail()));
+                    currentUser.setUsername(user.getUsername());
                 }
+
+                if (user.getPassword() != null)
+                {
+                    currentUser.setPasswordNoEncrypt(user.getPassword());
+                }
+
+                if (user.getUserRoles()
+                        .size() > 0)
+                {
+                    // with so many relationships happening, I decided to go
+                    // with old school queries
+                    // delete the old ones
+                    rolerepos.deleteUserRolesByUserId(currentUser.getUserid());
+
+                    // add the new ones
+                    for (UserRoles ur : user.getUserRoles())
+                    {
+                        rolerepos.insertUserRoles(id, ur.getRole()
+                                                        .getRoleid());
+                    }
+                }
+
+                if (user.getReviews()
+                        .size() > 0)
+                {
+                    for (Review r : user.getReviews())
+                    {
+                        currentUser.getReviews()
+                                   .add(new Review(r.getReviewid(), currentUser));
+                    }
+                }
+
+                return userrepos.save(currentUser);
+            } else
+            {
+                throw new ResourceNotFoundException(id + " Not current user");
             }
-
-            return userrepos.save(currentUser);
         } else
         {
-            throw new ResourceNotFoundException(id + " Not current user");
+            throw new ResourceNotFoundException(authentication.getName());
         }
-    }
 
-    @Transactional
-    @Override
-    public void deleteUserRole(long userid, long roleid)
-    {
-        userrepos.findById(userid)
-                 .orElseThrow(() -> new ResourceNotFoundException("User id " + userid + " not found!"));
-        rolerepos.findById(roleid)
-                 .orElseThrow(() -> new ResourceNotFoundException("Role id " + roleid + " not found!"));
-
-        if (rolerepos.checkUserRolesCombo(userid, roleid)
-                     .getCount() > 0)
-        {
-            rolerepos.deleteUserRoles(userid, roleid);
-        } else
-        {
-            throw new ResourceNotFoundException("Role and User Combination Does Not Exists");
-        }
-    }
-
-    @Transactional
-    @Override
-    public void addUserRole(long userid, long roleid)
-    {
-        userrepos.findById(userid)
-                 .orElseThrow(() -> new ResourceNotFoundException("User id " + userid + " not found!"));
-        rolerepos.findById(roleid)
-                 .orElseThrow(() -> new ResourceNotFoundException("Role id " + roleid + " not found!"));
-
-        if (rolerepos.checkUserRolesCombo(userid, roleid)
-                     .getCount() <= 0)
-        {
-            rolerepos.insertUserRoles(userid, roleid);
-        } else
-        {
-            throw new ResourceFoundException("Role and User Combination Already Exists");
-        }
     }
 }

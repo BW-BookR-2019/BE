@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="988c9e29-fd6a-414b-b271-6bf85f12910e" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations/StartHereApplication.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/runConfigurations/StartHereApplication.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mvnw.cmd" beforeDir="false" afterPath="$PROJECT_DIR$/mvnw.cmd" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/bookr/backend/config/AuthorizationServerConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bookr/backend/config/AuthorizationServerConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/bookr/backend/config/DataSourceConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bookr/backend/config/DataSourceConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/bookr/backend/config/H2ServerConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bookr/backend/config/H2ServerConfiguration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/bookr/backend/config/ResourceServerConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bookr/backend/config/ResourceServerConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/bookr/backend/config/SimpleCorsFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bookr/backend/config/SimpleCorsFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/bookr/backend/config/Swagger2Config.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bookr/backend/config/Swagger2Config.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/bookr/backend/config/WebConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bookr/backend/config/WebConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/bookr/backend/controllers/APIsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bookr/backend/controllers/APIsController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/bookr/backend/controllers/AuthenticationController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/bookr/backend/controllers/BookController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/bookr/backend/controllers/LogoutController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bookr/backend/controllers/LogoutController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/bookr/backend/controllers/OpenController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bookr/backend/controllers/OpenController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/bookr/backend/controllers/ReviewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bookr/backend/controllers/ReviewController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/bookr/backend/controllers/RolesController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bookr/backend/controllers/RolesController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/bookr/backend/controllers/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bookr/backend/controllers/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/bookr/backend/controllers/UseremailController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/bookr/backend/exceptions/ResourceFoundException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/bookr/backend/exceptions/ResourceNotFoundException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bookr/backend/exceptions/ResourceNotFoundException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/bookr/backend/exceptions/ValidationError.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bookr/backend/exceptions/ValidationError.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/bookr/backend/handlers/RestExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bookr/backend/handlers/RestExceptionHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/bookr/backend/models/APIOpenLibrary.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bookr/backend/models/APIOpenLibrary.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/bookr/backend/models/Auditable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bookr/backend/models/Auditable.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/bookr/backend/models/Book.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/bookr/backend/models/BookReviews.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/bookr/backend/models/ErrorDetail.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bookr/backend/models/ErrorDetail.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/bookr/backend/models/Review.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bookr/backend/models/Review.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/bookr/backend/models/Role.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bookr/backend/models/Role.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/bookr/backend/models/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bookr/backend/models/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/bookr/backend/models/UserRoles.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bookr/backend/models/UserRoles.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/bookr/backend/models/Useremail.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/bookr/backend/out/StartHereApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bookr/backend/out/StartHereApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/bookr/backend/repository/BookRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/bookr/backend/repository/ReviewRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bookr/backend/repository/ReviewRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/bookr/backend/repository/RoleRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bookr/backend/repository/RoleRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/bookr/backend/repository/UseremailRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/bookr/backend/services/BookService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/bookr/backend/services/BookServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/bookr/backend/services/ReviewService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bookr/backend/services/ReviewService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/bookr/backend/services/ReviewServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bookr/backend/services/ReviewServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/bookr/backend/services/RoleService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bookr/backend/services/RoleService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/bookr/backend/services/RoleServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bookr/backend/services/RoleServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/bookr/backend/services/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bookr/backend/services/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/bookr/backend/services/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bookr/backend/services/UserServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/bookr/backend/services/UseremailService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/bookr/backend/services/UseremailServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/bookr/backend/view/JustTheCount.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/info/ChangeLog.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/info/ChangeLog.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/info/curl.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/info/curl.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/logback-spring.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/logback-spring.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/bookr/backend/SeedData.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/bookr/backend/StartHereApplication.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/bookr/backend/controllers/UserControllerIntegrationTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/bookr/backend/controllers/UserControllerUnitTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/bookr/backend/services/UserServiceImplUnitTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/resources/application.properties" beforeDir="false" />
+    </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="importingSettings">
+      <MavenImportingSettings>
+        <option name="importAutomatically" value="true" />
+      </MavenImportingSettings>
+    </option>
+  </component>
+  <component name="ProjectId" id="1RLP4xw5KRGXejS0OhhZI9w7Ppk" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="PropertiesComponent">
+    <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="RequestMappingsPanelOrder0" value="0" />
+    <property name="RequestMappingsPanelOrder1" value="1" />
+    <property name="RequestMappingsPanelWidth0" value="75" />
+    <property name="RequestMappingsPanelWidth1" value="75" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="nodejs_package_manager_path" value="npm" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/java/com/bookr/backend" />
+      <recent name="$PROJECT_DIR$/out" />
+    </key>
+  </component>
+  <component name="RunAnythingCache">
+    <option name="myCommands">
+      <command value="mvn clean" />
+      <command value="mvn clean install" />
+    </option>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="988c9e29-fd6a-414b-b271-6bf85f12910e" name="Default Changelist" comment="" />
+      <created>1569443215902</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1569443215902</updated>
+      <workItem from="1569443217634" duration="12630000" />
+      <workItem from="1569559314343" duration="75000" />
+      <workItem from="1569559883540" duration="595000" />
+      <workItem from="1569592328821" duration="4370000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>

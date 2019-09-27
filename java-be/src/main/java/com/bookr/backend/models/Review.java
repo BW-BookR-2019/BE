@@ -6,7 +6,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "reviews")
-public class Review
+public class Review extends Auditable
 {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -27,12 +27,19 @@ public class Review
     {
     }
 
+    public Review(long reviewid, User currentUser)
+    {
+        super();
+    }
+
     public Review(String review, User user, int rating)
     {
         this.review = review;
         this.user = user;
         this.rating = rating;
     }
+
+
 
     public long getReviewid()
     {
@@ -74,5 +81,3 @@ public class Review
         this.rating = rating;
     }
 }
-
-

@@ -47,8 +47,6 @@ public class APIsController
 
         Map<String, APIOpenLibrary> ourBooks = responseEntity.getBody();
 
-        // goodreads
-
         System.out.println(ourBooks);
         return new ResponseEntity<>(ourBooks, HttpStatus.OK);
     }

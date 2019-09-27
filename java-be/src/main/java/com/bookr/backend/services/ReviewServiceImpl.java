@@ -3,62 +3,49 @@ package com.bookr.backend.services;
 import com.bookr.backend.exceptions.ResourceNotFoundException;
 import com.bookr.backend.models.Review;
 import com.bookr.backend.repository.ReviewRepository;
-import com.bookr.backend.services.ReviewService;
+import com.bookr.backend.repository.UserRepository;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Pageable;
-import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
-import java.util.List;
-
-@Service(value="ReviewService")
+@Service(value="reviewService")
 public class ReviewServiceImpl implements ReviewService
 {
     @Autowired
-    private ReviewRepository reviewrepo;
+    private ReviewRepository reviewRepository;
 
-    @Override
-    public Review findReviewById(long id)
-    {
-        return reviewrepo.findById(id).orElseThrow(() -> new ResourceNotFoundException(Long.toString(id)));
-    }
+    @Autowired
+    private UserRepository userRepository;
+
 
     @Override
     public void delete(long id)
     {
-        if (reviewrepo.findById(id).isPresent())
+        if (reviewRepository.findById(id).isPresent())
         {
-            reviewrepo.deleteById(id);
+            Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+            if (reviewRepository.findById(id).get().getUser().getUsername().equalsIgnoreCase(authentication.getName()))
+            {
+                reviewRepository.deleteById(id);
+            }
+            else
+            {
+                throw new ResourceNotFoundException(Long.toString(id) + " " + authentication.getName());
+            }
         }
         else
+        {
             throw new ResourceNotFoundException(Long.toString(id));
-    }
-
-//    @Override
-//    public Review update(Review review, long id) {
-//        return null;
-//    }
-
-    @Transactional
-    @Override
-    public Review save(Review review)
-    {
-        Review stuff =new Review();
-        stuff.setReview(review.getReview());
-        stuff.setUser(review.getUser());
-        stuff.setRating(review.getRating());
-        return reviewrepo.save(stuff);
+        }
     }
 
     @Override
     public Review update(Review review, long id)
     {
-        Review newReview = reviewrepo.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException(Long.toString(id)));
+        Review newReview = reviewRepository.findById(id)
+                                           .orElseThrow(() -> new ResourceNotFoundException(Long.toString(id)));
 
         if (review.getReview() != null)
         {
@@ -70,7 +57,21 @@ public class ReviewServiceImpl implements ReviewService
             newReview.setUser(review.getUser());
         }
 
-        return reviewrepo.save(newReview);
+        return reviewRepository.save(newReview);
     }
-}
 
+
+    @Transactional
+    @Override
+    public Review save(Review Review)
+    {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+
+              Review.setUser(userRepository.findByUsername(authentication.getName()));
+        //User currentUser = userRepository.findByUsername(authentication.getName());
+        Review saveReview =  reviewRepository.save(Review);
+        return saveReview;
+    }
+
+
+}
