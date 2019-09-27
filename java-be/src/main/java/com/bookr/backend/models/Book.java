@@ -82,4 +82,11 @@ public class Book extends Auditable
         this.publisher = publisher;
     }
 
+    public List<Review> getReviews() {
+        return reviews;
+    }
+
+    public void setReviews(List<Review> reviews) {
+        this.reviews = reviews;
+    }
 }

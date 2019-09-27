@@ -66,7 +66,7 @@ public class ReviewController
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @ApiOperation(value = "Udates a review info", consumes = "Review", response = void.class)
+    @ApiOperation(value = "Updates a review", consumes = "Review", response = void.class)
     @ApiResponses(value = {
             @ApiResponse(code = 201, message = "Review Successfully Updated", response = void.class),
             @ApiResponse(code = 404, message = "Review Not Found", response = ErrorDetail.class),
