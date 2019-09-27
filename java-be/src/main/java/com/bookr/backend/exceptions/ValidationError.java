@@ -24,10 +24,4 @@ public class ValidationError
     {
         this.message = message;
     }
-
-    @Override
-    public String toString()
-    {
-        return "ValidationError{" + "Code='" + Code + '\'' + ", message='" + message + '\'' + '}';
-    }
 }

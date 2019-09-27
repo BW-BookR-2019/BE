@@ -1,6 +1,7 @@
 <component name="ProjectRunConfigurationManager">
   <configuration default="false" name="StartHereApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
-    <option name="SPRING_BOOT_MAIN_CLASS" value="com.bookr.backend" />
+    <module name="java-be" />
+    <option name="SPRING_BOOT_MAIN_CLASS" value="com.bookr.backend.out.StartHereApplication" />
     <option name="ALTERNATIVE_JRE_PATH" />
     <method v="2">
       <option name="Make" enabled="true" />

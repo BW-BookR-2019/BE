@@ -1,4 +1,4 @@
-package com.bookr.backend;
+package com.bookr.backend.out;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

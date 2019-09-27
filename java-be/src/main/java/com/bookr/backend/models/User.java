@@ -30,70 +30,27 @@ public class User extends Auditable
     @OneToMany(mappedBy = "user",
                cascade = CascadeType.ALL)
     @JsonIgnoreProperties("user")
-    private List<UserRoles> userroles = new ArrayList<>();
-
-    @OneToMany(mappedBy = "user",
-               cascade = CascadeType.ALL)
-    @JsonIgnoreProperties("user")
-    private List<Review> reviews = new ArrayList<>();
-
-    @OneToMany(mappedBy = "user",
-               cascade = CascadeType.ALL)
-    @JsonIgnoreProperties("user")
-    private List<Book> books = new ArrayList<>();
+    private List<UserRoles> userRoles = new ArrayList<>();
 
     @OneToMany(mappedBy = "user",
                cascade = CascadeType.ALL,
                orphanRemoval = true)
     @JsonIgnoreProperties("user")
-    private List<Useremail> useremails = new ArrayList<>();
+    private List<Review> reviews = new ArrayList<>();
 
     public User()
     {
     }
 
-    public User(String username, String password, List<Review> reviews)
+    public User(String username, String password, List<UserRoles> userRoles)
     {
-        this.username = username;
+        setUsername(username);
         setPassword(password);
-        for (Review r : reviews)
+        for (UserRoles ur : userRoles)
         {
-            r.setUser(this);
+            ur.setUser(this);
         }
-        this.reviews = reviews;
-    }
-        //    public User(String username, String password, List<UserRoles> userRoles)
-//    {
-//        setUsername(username);
-//        setPassword(password);
-//        for (UserRoles ur : userRoles)
-//        {
-//            ur.setUser(this);
-//        }
-//        this.userroles = userRoles;
-//    }
-
-    //User Roles won't be used so I made a new constructor
-
-
-    public List<Review> getReviews()
-    {
-        return reviews;
-    }
-
-    public void setReviews(List<Review> reviews)
-    {
-        this.reviews = reviews;
-    }
-
-    public List<Book> getBooks()
-    {
-        return books;
-    }
-
-    public void setBooks(List<Book> books)
-    {
-        this.books = books;
+        this.userRoles = userRoles;
     }
 
     public long getUserid()
@@ -132,41 +89,31 @@ public class User extends Auditable
         this.password = password;
     }
 
-    public List<Review> getReview()
+    public List<UserRoles> getUserRoles()
+    {
+        return userRoles;
+    }
+
+    public void setUserRoles(List<UserRoles> userRoles)
+    {
+        this.userRoles = userRoles;
+    }
+
+    public List<Review> getReviews()
     {
         return reviews;
     }
 
-    public void setReview(List<Review> review)
+    public void setReviews(List<Review> reviews)
     {
-        this.reviews = review;
-    }
-
-//    public List<UserRoles> getUserroles()
-//    {
-//        return userroles;
-//    }
-//
-//    public void setUserroles(List<UserRoles> userroles)
-//    {
-//        this.userroles = userroles;
-//    }
-
-    public List<Useremail> getUseremails()
-    {
-        return useremails;
-    }
-
-    public void setUseremails(List<Useremail> useremails)
-    {
-        this.useremails = useremails;
+        this.reviews = reviews;
     }
 
     public List<SimpleGrantedAuthority> getAuthority()
     {
         List<SimpleGrantedAuthority> rtnList = new ArrayList<>();
 
-        for (UserRoles r : this.userroles)
+        for (UserRoles r : this.userRoles)
         {
             String myRole = "ROLE_" + r.getRole()
                                        .getName()
@@ -175,11 +122,5 @@ public class User extends Auditable
         }
 
         return rtnList;
-    }
-
-    @Override
-    public String toString()
-    {
-        return "User{" + "userid=" + userid + ", username='" + username + '\'' + ", password='" + password + '\'' + ", userRoles=" + userroles + ", useremails=" + useremails + '}';
     }
 }

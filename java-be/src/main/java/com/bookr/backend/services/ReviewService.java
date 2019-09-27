@@ -2,8 +2,6 @@ package com.bookr.backend.services;
 
 import com.bookr.backend.models.Review;
 
-import java.util.List;
-
 
 public interface ReviewService
 {
@@ -13,6 +11,5 @@ public interface ReviewService
 
     Review save(Review review);
 
-    Review findReviewById(long id);
-}
 
+}

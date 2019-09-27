@@ -19,17 +19,16 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
 
-
 @RestController
 @RequestMapping("/users")
 public class UserController
 {
-    private static final Logger logger = LoggerFactory.getLogger(UserController.class);
+    private static final Logger logger = LoggerFactory.getLogger(RolesController.class);
 
     @Autowired
     private UserService userService;
 
-    @PreAuthorize("hasAuthority('ROLE_USER')")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     @GetMapping(value = "/users",
                 produces = {"application/json"})
     public ResponseEntity<?> listAllUsers(HttpServletRequest request)
@@ -42,32 +41,17 @@ public class UserController
     }
 
 
-    @PreAuthorize("hasAuthority('ROLE_USER')")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     @GetMapping(value = "/user/{userId}",
                 produces = {"application/json"})
-    public ResponseEntity<?> getUserById(HttpServletRequest request,
-                                         @PathVariable
-                                                 Long userId)
+    public ResponseEntity<?> getUser(HttpServletRequest request,
+                                     @PathVariable
+                                             Long userId)
     {
         logger.trace(request.getMethod()
                             .toUpperCase() + " " + request.getRequestURI() + " accessed");
 
         User u = userService.findUserById(userId);
-        return new ResponseEntity<>(u, HttpStatus.OK);
-    }
-
-
-    @PreAuthorize("hasAuthority('ROLE_USER')")
-    @GetMapping(value = "/user/name/{userName}",
-                produces = {"application/json"})
-    public ResponseEntity<?> getUserByName(HttpServletRequest request,
-                                           @PathVariable
-                                                   String userName)
-    {
-        logger.trace(request.getMethod()
-                            .toUpperCase() + " " + request.getRequestURI() + " accessed");
-
-        User u = userService.findByName(userName);
         return new ResponseEntity<>(u, HttpStatus.OK);
     }
 
@@ -84,7 +68,7 @@ public class UserController
     }
 
 
-    @PreAuthorize("hasAuthority('ROLE_USER')")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     @PostMapping(value = "/user",
                  consumes = {"application/json"},
                  produces = {"application/json"})
@@ -119,12 +103,12 @@ public class UserController
         logger.trace(request.getMethod()
                             .toUpperCase() + " " + request.getRequestURI() + " accessed");
 
-        userService.update(updateUser, id, request.isUserInRole("ADMIN"));
+        userService.update(updateUser, id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
 
-    @PreAuthorize("hasAuthority('ROLE_USER')")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     @DeleteMapping("/user/{id}")
     public ResponseEntity<?> deleteUserById(HttpServletRequest request,
                                             @PathVariable
@@ -135,37 +119,5 @@ public class UserController
 
         userService.delete(id);
         return new ResponseEntity<>(HttpStatus.OK);
-    }
-
-    @PreAuthorize("hasAuthority('ROLE_USER')")
-    @DeleteMapping("/user/{userid}/role/{roleid}")
-    public ResponseEntity<?> deleteUserRoleByIds(HttpServletRequest request,
-                                                 @PathVariable
-                                                         long userid,
-                                                 @PathVariable
-                                                         long roleid)
-    {
-        logger.trace(request.getMethod()
-                            .toUpperCase() + " " + request.getRequestURI() + " accessed");
-
-        userService.deleteUserRole(userid, roleid);
-
-        return new ResponseEntity<>(HttpStatus.OK);
-    }
-
-    @PreAuthorize("hasAuthority('ROLE_USER')")
-    @PostMapping("/user/{userid}/role/{roleid}")
-    public ResponseEntity<?> postUserRoleByIds(HttpServletRequest request,
-                                               @PathVariable
-                                                       long userid,
-                                               @PathVariable
-                                                       long roleid)
-    {
-        logger.trace(request.getMethod()
-                            .toUpperCase() + " " + request.getRequestURI() + " accessed");
-
-        userService.addUserRole(userid, roleid);
-
-        return new ResponseEntity<>(HttpStatus.CREATED);
     }
 }

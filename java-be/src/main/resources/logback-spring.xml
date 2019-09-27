@@ -46,35 +46,31 @@
     </appender>
 
 
-    <root level="INFO" additivity="false">
+    <root level="INFO">
         <appender-ref ref="STDOUT"/>
         <appender-ref ref="FILE"/>
     </root>
 
-    <logger name="org.apache.catalina" level="INFO" additivity="false">
+    <logger name="org.apache.catalina" level="INFO">
         <appender-ref ref="TOMCAT"/>
         <appender-ref ref="STDOUT"/>
     </logger>
 
-    <logger name="org.apache.coyote" level="INFO" additivity="false">
+    <logger name="org.apache.coyote" level="INFO">
         <appender-ref ref="TOMCAT"/>
         <appender-ref ref="STDOUT"/>
     </logger>
 
-    <logger name="org.apache.tomcat" level="INFO" additivity="false">
+    <logger name="org.apache.tomcat" level="INFO">
         <appender-ref ref="TOMCAT"/>
         <appender-ref ref="STDOUT"/>
     </logger>
 
-    <logger name="org.springframework.boot" level="INFO" additivity="false">
+    <logger name="org.springframework.boot" level="INFO">
         <appender-ref ref="STDOUT"/>
     </logger>
 
-    <logger name="com.lambdaschool" level="INFO" additivity="false">
-        <appender-ref ref="STDOUT"/>
-    </logger>
-
-    <logger name="org.springframework.jdbc.core" level="TRACE" additivity="false">
+    <logger name="com.lambdaschool" level="INFO">
         <appender-ref ref="STDOUT"/>
     </logger>
 </configuration>
